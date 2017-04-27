@@ -16,7 +16,7 @@ NOTE:<br>
 
 ## Les éléments à purger
 
-La purge s'effectue sur plusieurs éléments différents:
+La purge s'effectue sur les éléments suivants:
 * les ressources
 * les questions
 
@@ -63,41 +63,70 @@ Ce sont les questions qui implémentent l'interface *IQuestion*.
 ## User story 1
 
 *En tant qu'*administrateur<br>
-*Je souhaite* visualiser les **ressources archivées autonomes** liées à des fichiers<br>
-*Afin de* les supprimer pour libérer de l'espace disque<br>
-
-NB: *Une ressource archivée est une ressource qui n'est associée à aucun module.*
-
-NB: *Une ressource archivée autonome est une ressource qui n'est associée à aucune autre ressource. Dans le cas d'une ressource multi-sco, un même répertoire de stockage des fichiers est partagé par plusieurs ressources.*
+*Je souhaite* supprimer les packages des *ressources autonomes archivées*<br>
+*Afin de* libérer de l'espace disque<br>
 
 ### Scénarios
 
-#### Vérifier que la ressource est toujours archivée avant la suppression
+#### Le package est supprimable
 
-*Etant* donné une ressource identifiée comme archivée<br>
-*Quand* je souhaite la supprimer<br>
-*Et* que la ressource est toujours dans la corbeille<br>
-*Alors* le répertoire associé à la ressource est supprimée<br>
-*Et* la ressource n'est plus visible dans la corbeille<br>
+**Etant** donné un package référencé par une *ressource autonome archivée*<br>
+**Quand** j'identifie son package<br>
+**Alors** la ressource est purgée<br>
+**Et** le package est supprimé<br>
 
-*Etant* donné une ressource identifiée comme archivée<br>
-*Quand* je souhaite la supprimer<br>
-*Et* que la ressource n'est plus dans la corbeille<br>
-*Alors* on m'informe que je ne peux plus la supprimer<br>
+**Etant** donné un package supprimable référencé par une *ressource autonome archivée* à l'instant T<br>
+**Quand** je souhaite supprimer ce package à T+1<br>
+**Et** que la ressource est toujours archivée<br>
+**Alors** la ressource est supprimée<br>
+**Et** le package est supprimé<br>
 
-#### Vérifier les cas d'apparitions d'un élément multi-sco dans la liste des ressources archivées
+#### Le package n'est pas supprimable
 
-*Etant* donné une ressource identifiée comme archivée et multi-sco<br>
-*Et* que cette ressource partage ses fichiers avec d'autres ressources archivées ou orphelines<br>
-*Quand* je visualise la liste des ressources archivées<br>
-*Alors* cette ressource est visible dans la liste<br>
+**Etant** donné un package supprimable référencé par une *ressource autonome archivée* à l'instant T<br>
+**Quand** je souhaite supprimer ce package à T+1<br>
+**Et** que la ressource n'est plus archivée<br>
+**Alors** la ressource n'est pas supprimée<br>
+**Et** le package n'est pas supprimé<br>
 
-*Etant* donné une ressource identifiée comme archivée et multi-sco<br>
-*Et* que cette ressource partage ses fichiers avec d'autres ressources en cours d'utilisations<br>
-*Quand* je visualise la liste des ressources archivées<br>
-*Alors* cette ressource n'est pas visible dans la liste<br>
+## User story 2
 
-### Eléments techniques
+*En tant qu'*administrateur<br>
+*Je souhaite* supprimer les packages des *ressources archivées*<br>
+*Afin de* libérer de l'espace disque<br>
+
+### Scénarios
+
+#### Le package est supprimable
+
+**Etant** donné un package référencé par deux *ressources archivées*<br>
+**Quand** j'identifie leur package<br>
+**Alors** les deux ressources sont purgées<br>
+**Et** le package est supprimé<br>
+
+**Etant** donné un package supprimable référencé par deux *ressource archivées* à l'instant T<br>
+**Quand** je souhaite supprimer ce package à T+1<br>
+**Et** que les deux ressoruce sont toujours archivées<br>
+**Alors** les ressources ne sont pas supprimées<br>
+**Et** le package n'est pas supprimé<br>
+
+#### Le package n'est pas supprimable
+
+**Etant** donné un package référencé par 2 ressources<br>
+**Quand** une ressource est archivée et que l'autre ressource est utilisée<br>
+**Alors** ce package n'est pas supprimé<br>
+
+**Etant** donné un package référencé par 2 ressources<br>
+**Quand** une ressource est archivée et que l'autre ressource est inutilisée<br>
+**Alors** ce package n'est pas supprimé<br>
+
+**Etant** donné un package supprimable référencé par deux *ressource archivées* à l'instant T<br>
+**Quand** je souhaite supprimer ce package à T+1<br>
+**Et** qu'au moins une des ressources n'est plus archivée<br>
+**Alors** les ressources ne sont pas supprimées<br>
+**Et** le package n'est pas supprimé<br>
+
+## Eléments techniques
 
 ```sql
 -- (1) identifie des resources (hors module) archivées qui sont liées à un répertoire
@@ -116,223 +145,6 @@ ORDER	BY RES.Reso_Name asc
 # contenu pour tester les ressources qui partagent un même répertoire.
 D:\Travail\Trunk\Dev\Tests\Player\Utils\Documents\Scorm\SimplifiedGolf.zip
 ```
-
-## User story 2
-
-*En tant qu'*administrateur<br>
-*Je souhaite* visualiser les **ressources orphelines autonome** liées à des fichiers<br>
-*Afin de* les supprimer pour libérer de l'espace disque<br>
-
-NB: *Une ressource orpheline est une ressource qui est visible dans la bibliothèque des ressources mais qui n'est associée à aucun module.*
-
-### Scénarios
-
-#### Vérifier que la ressource est toujours orpheline avant la suppression
-
-*Etant* donné une ressource identifiée comme orpheline<br>
-*Quand* je souhaite la supprimer<br>
-*Et* que la ressource est toujours inutilisée<br>
-*Alors* le répertoire associé à la ressource est supprimée<br>
-*Et* la ressource n'est plus visible dans la bibliothèque des ressources<br>
-
-*Etant* donné une ressource identifiée comme orpheline<br>
-*Quand* je souhaite la supprimer<br>
-*Et* que la ressource est maintenant utilisé<br>
-*Alors* on m'informe que je ne peux plus la supprimer<br>
-
-#### Vérifier les cas d'apparitions d'un élément multi-sco dans la liste des ressources orphelines
-
-*Etant* donné une ressource identifiée comme orpheline et multi-sco<br>
-*Et* que cette ressource partage ses fichiers avec d'autres ressources archivées ou orphelines<br>
-*Quand* je visualise la liste des ressources orphelines<br>
-*Alors* cette ressource est visible dans la liste<br>
-
-*Etant* donné une ressource identifiée comme orpheline et multi-sco<br>
-*Et* que cette ressource partage ses fichiers avec d'autres ressources en cours d'utilisations<br>
-*Quand* je visualise la liste des ressources orphelines<br>
-*Alors* cette ressource n'est pas visible dans la liste<br>
-
-#### Eléments techniques
-
-```sql
--- éléments associés à une ressource hors module (onglets éléments associés)
-SELECT *
-FROM   stu_resource RES,
-       stu_coursecomponent CC
-WHERE  RES.reso_subclass = 'Module'
-       AND CC.cour_subclass IN ('ItemResource', 'ItemQuestion', 'ItemPresential', 'ItemRegistration','ItemVirtualClassroom', 'ItemUserAuthentication')
-       AND CC.cour_resourceid = 786436
-       AND ( CC.cour_deletedon IS NULL )
-       AND RES.reso_courseid = CC.cour_courseid
-       AND ( RES.reso_deletedon IS NULL )  
-```
-
-## User story 3
-
-En tant qu'administrateur<br>
-Je souhaite visualiser les **modules archivés** dont toutes les ressources sont archivées ou orphelines<br>
-Afin de les supprimer pour libérer de l'espace disque<br>
-
-NB: *Un module archivé est un module qui n'est associée à aucune formation et qui est présent dans la corbeille.*
-
-### Scénarios
-
-#### Vérifier que le module est toujours archivé et que ses ressources sont archivées ou orphelines avant la suppression
-
-*Etant* donné une module identifié comme archivé<br>
-*Quand* je souhaite le supprimer<br>
-*Et* que le module est toujours archivé<br>
-*Et* que les ressources associées sont toujours archivées ou orphelines<br>
-*Alors* les répertoires associés aux ressources sont supprimées<br>
-*Et* le module n'est plus présent dans la corbeille<br>
-*Et* les resource associées ne sont plus visibles dans la bibliothèque des ressources<br>
-
-*Etant* donné une module identifié comme archivé<br>
-*Quand* je souhaite le supprimer<br>
-*Et* que le module n'est plus archivé<br>
-*Alors* on m'informe que je ne peux plus supprimer le module<br>
-
-*Etant* donné une module identifié comme archivé<br>
-*Quand* je souhaite le supprimer<br>
-*Et* que le module est toujours archivé<br>
-*Et* que les ressources associées ne sont plus toutes archivées ou orphelines<br>
-*Alors* on m'informe que je ne peux plus supprimer le module<br>
-
-## User story 4
-
-En tant qu'administrateur<br>
-Je souhaite visualiser les **modules orphelins** dont toutes les ressources sont archivées ou orphelines<br>
-Afin de les supprimer pour libérer de l'espace disque<br>
-
-NB: *Un module orphelin est un module qui n'est associée à aucune formation et qui est présent dans la bibliothèque des modules.*
-
-### Scénarios
-
-#### Vérifier que le module est toujours orphelin et que ses ressources sont archivées ou orphelines avant la suppression
-
-*Etant* donné une module identifié comme orphelin<br>
-*Quand* je souhaite le supprimer<br>
-*Et* que le module est toujours orphelin<br>
-*Et* que les ressources associées sont toujours archivées ou orphelines<br>
-*Alors* les répertoires associés aux ressources sont supprimées<br>
-*Et* le module n'est plus visible dans la bibliothèque des modules<br>
-*Et* les resource associées ne sont plus visibles dans la bibliothèque des ressources<br>
-
-*Etant* donné une module identifié comme orphelin<br>
-*Quand* je souhaite le supprimer<br>
-*Et* que le module n'est plus orphelin<br>
-*Alors* on m'informe que je ne peux plus supprimer le module<br>
-
-*Etant* donné une module identifié comme orphelin<br>
-*Quand* je souhaite le supprimer<br>
-*Et* que le module est toujours orphelin<br>
-*Et* que les ressources associées ne sont plus toutes archivées ou orphelines<br>
-*Alors* on m'informe que je ne peux plus supprimer le module<br>
-
-## User story 5
-
-En tant qu'administrateur<br>
-Je souhaite visualiser les **sessions archivées** dont toutes les ressources sont archivées ou orphelines<br>
-Afin de les supprimer pour libérer de l'espace disque<br>
-
-NB: une ressource en production est partagée entre sessions quelque soit la formation
-
-#### Vérifier que les ressources rattachées à la session sont archivées ou orphelines avant la suppression
-
-*Etant* donné une session archivée* dont toutes les ressources sont identifiées comme archivées ou orphelines<br>
-*Quand* je souhaite la supprimer<br>
-*Et* que la session est toujours archivée<br>
-*Et* que les ressources associées sont toujours archivées ou orphelines<br>
-*Alors* les répertoires associés aux ressources sont supprimées<br>
-*Et* la session n'est plus visible dans la corbeille<br>
-
-*Etant* donné une session archivée dont toutes les ressources sont identifiées comme archivées ou orphelines<br>
-*Quand* je souhaite la supprimer<br>
-*Et* que la session n'est plus archivée<br>
-*Alors* on m'informe que je ne peux plus supprimer la session<br>
-
-*Etant* donné une session archivée dont toutes les ressources sont identifiées comme archivées ou orphelines<br>
-*Quand* je souhaite la supprimer<br>
-*Et* que la session est toujours archivée<br>
-*Et* que les ressources associées ne sont plus toutes archivées ou orphelines<br>
-*Alors* on m'informe que je ne peux plus supprimer la session<br>
-
-## User story 6
-
-En tant qu'administrateur<br>
-Je souhaite visualiser les **sessions cloturées**<br>
-Afin de les supprimer pour libérer de l'espace disque<br>
-
-NB: UNe session clôturée ne peut pas être archivée.
-
-#### Vérifier que les ressources rattachées à la session sont archivées ou orphelines avant la suppression
-
-*Etant* donné une session clôturée dont toutes les ressources sont identifiées comme archivées ou orphelines<br>
-*Quand* je souhaite la supprimer<br>
-*Et* que la session est toujours clôturée<br>
-*Et* que les ressources associées sont toujours archivées ou orphelines<br>
-*Alors* les répertoires associés aux ressources sont supprimées<br>
-*Et* la session n'est plus visible dans la liste des sessions<br>
-
-*Etant* donné une session clôturée dont toutes les ressources sont identifiées comme archivées ou orphelines<br>
-*Quand* je souhaite la supprimer<br>
-*Et* que la session n'est plus clôturée<br>
-*Alors* on m'informe que je ne peux plus supprimer la session<br>
-
-*Etant* donné une session clôturée dont toutes les ressources sont identifiées comme archivées ou orphelines<br>
-*Quand* je souhaite la supprimer<br>
-*Et* que la session est toujours clôturée<br>
-*Et* que les ressources associées ne sont plus toutes archivées ou orphelines<br>
-*Alors* on m'informe que je ne peux plus supprimer la session<br>
-
-## User story 7
-
-En tant qu'administrateur<br>
-Je souhaite visualiser les **sessions réalisées**<br>
-Afin de les clôturer et de les supprimer pour libérer de l'espace disque<br>
-
-NB: UNe session réalisée est une session dont la date de fin est dépassée.
-
-#### Vérifier que les ressources rattachées à la session sont archivées ou orphelines avant la clôture et la suppression
-
-*Etant* donné une session réalisée dont toutes les ressources sont identifiées comme archivées ou orphelines<br>
-*Quand* je souhaite la supprimer<br>
-*Et* que la session est toujours réalisée<br>
-*Et* que les ressources associées sont toujours archivées ou orphelines<br>
-*Alors* les répertoires associés aux ressources sont supprimées<br>
-*Et* la session n'est plus visible dans la liste des sessions<br>
-
-*Etant* donné une session réalisée dont toutes les ressources sont identifiées comme archivées ou orphelines<br>
-*Quand* je souhaite la supprimer<br>
-*Et* que la session est repassé en cours de réalisation<br>
-*Alors* on m'informe que je ne peux plus supprimer la session<br>
-
-*Etant* donné une session réalisée dont toutes les ressources sont identifiées comme archivées ou orphelines<br>
-*Quand* je souhaite la supprimer<br>
-*Et* que la session est toujours réalisée<br>
-*Et* que les ressources associées ne sont plus toutes archivées ou orphelines<br>
-*Alors* on m'informe que je ne peux plus supprimer la session<br>
-
-## User story 8
-
-NB: Une session supprimable est une session dont les ressources sont archivées, orphelines ou dont les session
-
-En tant qu'administrateur
-Je souhaite visualiser les **formations archivées**
-Afin de les supprimer pour libérer de l'espace disque
-
-## User story 9
-
-En tant qu'administrateur
-Je souhaite visualiser les formations dont les sessions ne sont plus en cours de réalisation
-Afin de les supprimer pour libérer de l'espace disque
-
-## User story 10
-
-En tant que système
-Je souhaite supprimer les versions des ressources qui ne sont pas utilisées
-Afin de libérer de l'espace disque
-
 
 ## Privilèges
 
@@ -356,5 +168,11 @@ ressource associée à un ou plusieurs modules.
 **ressource inutilisée**<br>
 ressource qui n'est associéee à aucun module.
 
-**ressource archivées**<br>
+**ressource archivée**<br>
 ressource qui n'est associée à aucun module et qui est présente dans la corbeille.
+
+**ressource archivée autonome**<br>
+ressource qui n'est associée à aucun module, qui est présente dans la corbeille et dont le package ne dépend d'aucune autre ressource.
+
+**ressource archivée dépendante**<br>
+ressource qui n'est associée à aucun module, qui est présente dans la corbeille et dont le package dépend d'autres ressources.
