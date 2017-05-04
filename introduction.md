@@ -12,7 +12,7 @@ Avec le temps, ses fichiers prennent une place importante (plusieurs Go). La fon
 Pour cela, nous allons identifier les éléments rattachés à des fichiers qui ne sont plus utilisés.
 
 NOTE:<br>
-*Tous ses fichiers sont stockés dans [des répertoires spécifiques](./01-stockage-des-fichiers.md).*
+*Tous ses fichiers sont stockés dans [des répertoires spécifiques](./stockage-des-fichiers.md).*
 
 ## Les éléments à purger
 
@@ -126,6 +126,91 @@ Ce sont les questions qui implémentent l'interface *IQuestion*.
 **Alors** les ressources ne sont pas supprimées<br>
 **Et** le package n'est pas supprimé<br>
 
+## User story 3
+
+*En tant qu'*administrateur<br>
+*Je souhaite* être notifié par mail si mon espace de stockage atteint un certain seuil<br>
+*Afin d*'être alerté à temps<br>
+
+### Scénarios
+
+#### L'utilisation de mon espace de stockage dépasse le seuil configuré
+
+**Etant** donné que des personnes ont le privilège "Vsix/Administration/Visibilité du menu de purge"<br>
+**Quand** l'espace de stockage dépasse ce seuil<br>
+**Alors** ces personnes reçoivent un email lors du traitement par lot<br>
+
+**Etant** donné que l'email a été envoyé <br>
+**Quand** l'administrateur ouvre son email<br>
+**Alors** il est informé du dépassement<br>
+**Et** il peut accéder à la page de purge<br>
+
+## User story 4
+
+*En tant qu'*administrateur<br>
+*Je souhaite* visualiser mon espace de stockage<br>
+*Afin de* connaître la place restante<br>
+
+### Scénarios
+
+**Etant** donné que des personnes ont le privilège "Vsix/Administration/Visibilité du menu de purge"<br>
+**Quand** ces personne accèdent à la page de purge<br>
+**Alors** elles ont un visuel de l'utilisation de l'espace disque relatif au configurations (paramètre/licence)<br>
+
+**Quand** l'application a le paramètre de licence d'espace disque alloué<br>
+**Alors** la valeur maximale du visuel de l'utilisation de l'espace disque est égale à ce paramètre de licence<br>
+**Sinon** la valeur maximale est égale au paramètre de configuration équivoque
+
+## User story 5
+
+*En tant qu'*administrateur<br>
+*Je souhaite* visualiser l'occupation de l'espace disque par types de répertoires<br>
+*Afin de* identifier les éléments les plus volumineux<br>
+
+### Scénarios
+
+**Etant** donné une formation ou une session de formation<br>
+**Quand** j'y ajoute un document<br>
+**Alors** l'espace disque occupé par les documents augmentent<br>
+
+**Etant** donné une formation ou une session de formation<br>
+**Quand** j'y ajoute un élément téléchargé<br>
+**Alors** l'espace disque occupé par les documents augmentent<br>
+
+**Etant** donné plusieurs répertoires visualisés<br>
+**Quand** un des répertoires n'occupe plus d'espace disque<br>
+**Alors** il n'est plus visible<br>
+
+## User story 6
+
+**En tant qu'** administrateur<br>
+**Je souhaite** visualiser les packages les plus volumineux qui sont liés à des ressources studio non purgables<br>
+**Afin de** pouvoir les archiver si ils ne sont plus utilisés<br>
+
+### Scénarios
+
+**Etant** donné un package qui est lié à une ressource non purgable<br>
+**Quand** l'admin. accède à la page de purge<br>
+**Alors** il visualise le nom du package<br>
+**Et** sa taille<br>
+**Et** le nom de la ressource<br>
+**Et** un lien vers cette ressource<br>
+
+**Etant** donné un package qui est lié à des ressources non purgables (non archivées)<br>
+**Quand** l'admin. accède à la page de purge<br>
+**Alors** il visualise le nom du package<br>
+**Et** sa taille<br>
+**Et** le nom des ressources qui y sont liées <br>
+**Et** des liens vers les ressources qui y sont liées (seulement les non archivées)<br>
+
+**Etant** donné plusieurs packages qui sont liés à des ressources non purgables<br>
+**Quand** l'admin. accède à la page de purge<br>
+**Alors** les packages sont affichés par taille décroissante<br>
+
+**Etant** donné un package qui n'est lié qu'à des resources archivées<br>
+**Quand** l'admin. accède à la page de purge<br>
+**Alors** il ne visualise pas le package car ce package est purgeable.<br>
+
 ## Eléments techniques
 
 ```sql
@@ -149,15 +234,22 @@ D:\Travail\Trunk\Dev\Tests\Player\Utils\Documents\Scorm\SimplifiedGolf.zip
 ## Privilèges
 
 Privilège pour voir le menu Purge
-    Vsix/Manager: Visibilité des utilisateurs dans Mon équipe 
+    Vsix/Administration: Visibilité des utilisateurs dans Mon équipe 
+
+## Licence
+
+Nouvelle entrée de licence
+    "Superviseur.AllocatedDiskSpace.Go": Définition de la taille d'espace disque alloué à l'application en GB (optionnel)
+    exemple: 20.5
 
 ## Paramètres de configuration
 
 Paramètres: 
+
     "Seuil de tolérance d'utilisation d'espace disque en % ou en GB. Ajoutez l'unité à la fin du paramètre. Ex: '150GB' ou '80%'. "
     valeur par défaut: 80%
 
-    Espace disque alloué pour l'application en GB. Le paramètre de licence du même nom est prioritaire à ce paramètre.
+    "Espace disque alloué pour l'application en GB. Le paramètre de licence du même nom est prioritaire à ce paramètre."
     valeur par défaut: 50
 
 # Glossaire
