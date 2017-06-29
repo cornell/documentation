@@ -60,6 +60,28 @@ Les questions concernées sont les suivantes:
 TECH:<br>
 Ce sont les questions qui implémentent l'interface *IQuestion*.
 
+## User story [#18015](https://redmine.condate.com/issues/18015)
+
+*En tant qu'*administrateur<br>
+*Je souhaite* visualiser mon espace de stockage<br>
+*Afin de* connaître la place restante<br>
+
+**Soit**  une licence ne contenant pas la clé qui définit l'espace disque alloué à l'application<br>
+**Quand** l'admin accède à la page de purge<br>
+**Alors** l'espace disque total affiché est de 50Gb<br>
+
+**Soit**  une licence ne contenant pas la clé qui définit l'espace disque alloué à l'application<br>
+**Quand** l'admin modifie l'espace disque alloué à l'application (paramètre de configuration)
+**Et**    que l'admin accède à la page de purge<br>
+**Alors** l'espace disque total affiché est égal au paramètre de configuration<br>
+
+
+**Quand** l'application a le paramètre de licence d'espace disque alloué<br>
+**Alors** la valeur maximale du visuel de l'utilisation de l'espace disque est égale à ce paramètre de licence<br>
+**Sinon** la valeur maximale est égale au paramètre de configuration équivoque
+
+
+
 ## User story 1
 
 *En tant qu'*administrateur<br>
@@ -70,24 +92,24 @@ Ce sont les questions qui implémentent l'interface *IQuestion*.
 
 #### Le package est supprimable
 
-**Etant** donné un package référencé par une *ressource autonome archivée*<br>
+**Soit**  un package référencé par une *ressource autonome archivée*<br>
 **Quand** j'identifie son package<br>
 **Alors** la ressource est purgée<br>
-**Et** le package est supprimé<br>
+**Et**    le package est supprimé<br>
 
-**Etant** donné un package supprimable référencé par une *ressource autonome archivée* à l'instant T<br>
+**Soit**  un package supprimable référencé par une *ressource autonome archivée* à l'instant T<br>
 **Quand** je souhaite supprimer ce package à T+1<br>
-**Et** que la ressource est toujours archivée<br>
+**Et**    que la ressource est toujours archivée<br>
 **Alors** la ressource est supprimée<br>
-**Et** le package est supprimé<br>
+**Et**    le package est supprimé<br>
 
 #### Le package n'est pas supprimable
 
-**Etant** donné un package supprimable référencé par une *ressource autonome archivée* à l'instant T<br>
+**Soit**  un package supprimable référencé par une *ressource autonome archivée* à l'instant T<br>
 **Quand** je souhaite supprimer ce package à T+1<br>
-**Et** que la ressource n'est plus archivée<br>
+**Et**    que la ressource n'est plus archivée<br>
 **Alors** la ressource n'est pas supprimée<br>
-**Et** le package n'est pas supprimé<br>
+**Et**    le package n'est pas supprimé<br>
 
 ## User story 2
 
@@ -99,32 +121,32 @@ Ce sont les questions qui implémentent l'interface *IQuestion*.
 
 #### Le package est supprimable
 
-**Etant** donné un package référencé par deux *ressources archivées*<br>
+**Soit**  un package référencé par deux *ressources archivées*<br>
 **Quand** j'identifie leur package<br>
 **Alors** les deux ressources sont purgées<br>
-**Et** le package est supprimé<br>
+**Et**    le package est supprimé<br>
 
-**Etant** donné un package supprimable référencé par deux *ressource archivées* à l'instant T<br>
+**Soit**  un package supprimable référencé par deux *ressource archivées* à l'instant T<br>
 **Quand** je souhaite supprimer ce package à T+1<br>
-**Et** que les deux ressoruce sont toujours archivées<br>
+**Et**    que les deux ressoruce sont toujours archivées<br>
 **Alors** les ressources ne sont pas supprimées<br>
-**Et** le package n'est pas supprimé<br>
+**Et**    le package n'est pas supprimé<br>
 
 #### Le package n'est pas supprimable
 
-**Etant** donné un package référencé par 2 ressources<br>
+**Soit**  un package référencé par 2 ressources<br>
 **Quand** une ressource est archivée et que l'autre ressource est utilisée<br>
 **Alors** ce package n'est pas supprimé<br>
 
-**Etant** donné un package référencé par 2 ressources<br>
+**Soit**  un package référencé par 2 ressources<br>
 **Quand** une ressource est archivée et que l'autre ressource est inutilisée<br>
 **Alors** ce package n'est pas supprimé<br>
 
-**Etant** donné un package supprimable référencé par deux *ressource archivées* à l'instant T<br>
+**Soit**  un package supprimable référencé par deux *ressource archivées* à l'instant T<br>
 **Quand** je souhaite supprimer ce package à T+1<br>
-**Et** qu'au moins une des ressources n'est plus archivée<br>
+**Et**    qu'au moins une des ressources n'est plus archivée<br>
 **Alors** les ressources ne sont pas supprimées<br>
-**Et** le package n'est pas supprimé<br>
+**Et**    le package n'est pas supprimé<br>
 
 ## User story 3
 
@@ -136,32 +158,16 @@ Ce sont les questions qui implémentent l'interface *IQuestion*.
 
 #### L'utilisation de mon espace de stockage dépasse le seuil configuré
 
-**Etant** donné que des personnes ont le privilège "Vsix/Administration/Visibilité du menu de purge"<br>
+**Soit**  que des personnes ont le privilège "Vsix/Administration/Visibilité du menu de purge"<br>
 **Quand** l'espace de stockage dépasse ce seuil<br>
 **Alors** ces personnes reçoivent un email lors du traitement par lot<br>
 
-**Etant** donné que l'email a été envoyé <br>
-**Quand** l'administrateur ouvre son email<br>
+**Soit**  que l'email a été envoyé <br>
+**Quand** l'admin ouvre son email<br>
 **Alors** il est informé du dépassement<br>
-**Et** il peut accéder à la page de purge<br>
+**Et**    il peut accéder à la page de purge<br>
 
-## User story 4
-
-*En tant qu'*administrateur<br>
-*Je souhaite* visualiser mon espace de stockage<br>
-*Afin de* connaître la place restante<br>
-
-### Scénarios
-
-**Etant** donné que des personnes ont le privilège "Vsix/Administration/Visibilité du menu de purge"<br>
-**Quand** ces personne accèdent à la page de purge<br>
-**Alors** elles ont un visuel de l'utilisation de l'espace disque relatif au configurations (paramètre/licence)<br>
-
-**Quand** l'application a le paramètre de licence d'espace disque alloué<br>
-**Alors** la valeur maximale du visuel de l'utilisation de l'espace disque est égale à ce paramètre de licence<br>
-**Sinon** la valeur maximale est égale au paramètre de configuration équivoque
-
-## User story 5
+## User story 5 [#18017](https://redmine.condate.com/issues/18017)[#18341](https://redmine.condate.com/issues/18341)
 
 *En tant qu'*administrateur<br>
 *Je souhaite* visualiser l'occupation de l'espace disque par types de répertoires<br>
@@ -169,15 +175,15 @@ Ce sont les questions qui implémentent l'interface *IQuestion*.
 
 ### Scénarios
 
-**Etant** donné une formation ou une session de formation<br>
+**Soit**  une formation ou une session de formation<br>
 **Quand** j'y ajoute un document<br>
 **Alors** l'espace disque occupé par les documents augmentent<br>
 
-**Etant** donné une formation ou une session de formation<br>
+**Soit**  une formation ou une session de formation<br>
 **Quand** j'y ajoute un élément téléchargé<br>
 **Alors** l'espace disque occupé par les documents augmentent<br>
 
-**Etant** donné plusieurs répertoires visualisés<br>
+**Soit**  plusieurs répertoires visualisés<br>
 **Quand** un des répertoires n'occupe plus d'espace disque<br>
 **Alors** il n'est plus visible<br>
 
@@ -189,25 +195,25 @@ Ce sont les questions qui implémentent l'interface *IQuestion*.
 
 ### Scénarios
 
-**Etant** donné un package qui est lié à une ressource non purgable<br>
+**Soit**  un package qui est lié à une ressource non purgable<br>
 **Quand** l'admin. accède à la page de purge<br>
 **Alors** il visualise le nom du package<br>
-**Et** sa taille<br>
-**Et** le nom de la ressource<br>
-**Et** un lien vers cette ressource<br>
+**Et**    sa taille<br>
+**Et**    le nom de la ressource<br>
+**Et**    un lien vers cette ressource<br>
 
-**Etant** donné un package qui est lié à des ressources non purgables (non archivées)<br>
+**Soit**  un package qui est lié à des ressources non purgables (non archivées)<br>
 **Quand** l'admin. accède à la page de purge<br>
 **Alors** il visualise le nom du package<br>
-**Et** sa taille<br>
-**Et** le nom des ressources qui y sont liées <br>
-**Et** des liens vers les ressources qui y sont liées (seulement les non archivées)<br>
+**Et**    sa taille<br>
+**Et**    le nom des ressources qui y sont liées <br>
+**Et**    des liens vers les ressources qui y sont liées (seulement les non archivées)<br>
 
-**Etant** donné plusieurs packages qui sont liés à des ressources non purgables<br>
+**Soit**  plusieurs packages qui sont liés à des ressources non purgables<br>
 **Quand** l'admin. accède à la page de purge<br>
 **Alors** les packages sont affichés par taille décroissante<br>
 
-**Etant** donné un package qui n'est lié qu'à des resources archivées<br>
+**Soit**  un package qui n'est lié qu'à des resources archivées<br>
 **Quand** l'admin. accède à la page de purge<br>
 **Alors** il ne visualise pas le package car ce package est purgeable.<br>
 
@@ -230,41 +236,3 @@ ORDER	BY RES.Reso_Name asc
 # contenu pour tester les ressources qui partagent un même répertoire.
 D:\Travail\Trunk\Dev\Tests\Player\Utils\Documents\Scorm\SimplifiedGolf.zip
 ```
-
-## Privilèges
-
-Privilège pour voir le menu Purge
-    Vsix/Administration: Visibilité des utilisateurs dans Mon équipe 
-
-## Licence
-
-Nouvelle entrée de licence
-    "Superviseur.AllocatedDiskSpace.Go": Définition de la taille d'espace disque alloué à l'application en GB (optionnel)
-    exemple: 20.5
-
-## Paramètres de configuration
-
-Paramètres: 
-
-    "Seuil de tolérance d'utilisation d'espace disque en % ou en GB. Ajoutez l'unité à la fin du paramètre. Ex: '150GB' ou '80%'. "
-    valeur par défaut: 80%
-
-    "Espace disque alloué pour l'application en GB. Le paramètre de licence du même nom est prioritaire à ce paramètre."
-    valeur par défaut: 50
-
-# Glossaire
-
-**ressource utilisée**<br>
-ressource associée à un ou plusieurs modules.
-
-**ressource inutilisée**<br>
-ressource qui n'est associéee à aucun module.
-
-**ressource archivée**<br>
-ressource qui n'est associée à aucun module et qui est présente dans la corbeille.
-
-**ressource archivée autonome**<br>
-ressource qui n'est associée à aucun module, qui est présente dans la corbeille et dont le package ne dépend d'aucune autre ressource.
-
-**ressource archivée dépendante**<br>
-ressource qui n'est associée à aucun module, qui est présente dans la corbeille et dont le package dépend d'autres ressources.
