@@ -1,11 +1,34 @@
 # Quotas
 
+Acces denied
+
 ## Story 01 [[18015]](https://redmine.condate.com/issues/18015)
 
 *En tant qu*'administrateur,<br>
 *Je veux* visualiser l'espace de stockage<br>
 *Afin de* connaître la place restante<br>
 
+### Scénarios
+
+*Soit* un espace disque alloué de 100GB
+*Et* un espace disque utilisé de 60GB
+*Alors* l'espace disque restant est de 40GB
+
+*Soit* un espace disque alloué de 50GB
+*Et* un seuil égal à 80%
+*Alors* la valeur du seuil d'alerte est de 40GB
+
+*Soit* un espace disque alloué de 50GB
+*Et* un seuil égal à 40GB
+*Alors* la valeur du seuil d'alerte est de 40GB
+
+*Soit* l'espace disque du paramètre de configuration qui est vide
+*Quand* l'espace disque utilisé est de 10GB
+*Alors* l'espace disque alloué est égal à 13GB (130% de l'espace disque utilisé)
+
+*Soit* un espace disque alloué de 50GB
+*Et* un seuil égal à 0.3GB
+*Alors* la valeur du seuil d'alerte est de 0.3GB
 
 
 ## Story 02 [[18017]](https://redmine.condate.com/issues/18017) [[18341]](https://redmine.condate.com/issues/18341)
@@ -16,27 +39,18 @@
 
 ### Scénarios
 
+L'élément "Packages" contient la somme de tous les sous répertoires de "Packages"
+L'élément "Documents" contient la somme des répertoires "Documents", "Pictures" et "EditorResources".
+L'élément "Logs" contient la somme des répertoires "Logs" et "Traces".
 
-### Technique
-
-```java
-// espace de noms
-Syfadis.Supervision.Purge.Quotas
-
-// service
-ApplicationDiskUsage PurgeService.GetDiskSpaceUsageByApplication();
-
-// objets
-DiskSpaceUsage -> PurgeConfiguration
-```
 
 ## Story 03 [[18208]](https://redmine.condate.com/issues/18208)
 
 *En tant qu*'administrateur,<br>
 *Je veux* spécifier le quota d'espace disque vendu grâce à la licence<br>
-*Afin de* contractualiser l'space disque vendu<br>
+*Afin de* contractualiser l'espace disque vendu<br>
 
-## Scénarios
+### Scénarios
 
 *Soit* une application sans licence<br>
 *Quand* je récupère l'espace disque alloué<br>
@@ -51,3 +65,15 @@ DiskSpaceUsage -> PurgeConfiguration
 *Quand* je récupère les paramètres de configuration
 *Alors* l'espace disque alloué est de 60GB
 
+## Technique
+
+```java
+// espace de noms
+Syfadis.Supervision.Purge.Quotas
+
+// service
+ApplicationDiskUsage PurgeService.GetDiskSpaceUsageByApplication();
+
+// objets
+DiskSpaceUsage -> PurgeConfiguration
+```

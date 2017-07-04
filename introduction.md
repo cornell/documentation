@@ -80,8 +80,6 @@ Ce sont les questions qui implémentent l'interface *IQuestion*.
 **Alors** la valeur maximale du visuel de l'utilisation de l'espace disque est égale à ce paramètre de licence<br>
 **Sinon** la valeur maximale est égale au paramètre de configuration équivoque
 
-
-
 ## User story 1
 
 *En tant qu'*administrateur<br>
@@ -118,6 +116,7 @@ Ce sont les questions qui implémentent l'interface *IQuestion*.
 *Afin de* libérer de l'espace disque<br>
 
 ### Scénarios
+
 
 #### Le package est supprimable
 
