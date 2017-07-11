@@ -1,5 +1,5 @@
 ---
-Sort: 13
+Sort: 11
 ---
 **ressource utilisée**<br>
 ressource associée à un ou plusieurs modules.

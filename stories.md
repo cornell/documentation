@@ -15,7 +15,13 @@ Chef de projet, je veux spécifier le quota d'espace disque vendu grâce à la l
 [[18015]](https://redmine.condate.com/issues/18015)
 Admin, je veux visualiser mon espace de stockage afin de connaître la place restante
 
-## [Analyse](analyse.md)
+## [Analyse et purge](analyse-purge.md)
+
+[[18763]](https://redmine.condate.com/issues/18763)
+Admin, je souhaite visualiser un message d'attente lorsque la purge est lancée
+
+[[18850]](https://redmine.condate.com/issues/18850)
+Admin, je ne dois pas pouvoir supprimer une ressource vidéo utilisée dans une mise en page
 
 [[18018]](https://redmine.condate.com/issues/18018)
 Admin, Je veux supprimer les ressources archivées afin de libérer de l'espace disque
@@ -79,8 +85,10 @@ Admin, je souhaite avoir un filtre pour rechercher dans les ressources studio"
 
 # Version
 
-## V6.0.Next
+## V6.0.D
 
+[18850](https://redmine.condate.com/issues/18850)<br>
+[18763](https://redmine.condate.com/issues/18763)<br>
 [18612](https://redmine.condate.com/issues/18612)<br>
 [18611](https://redmine.condate.com/issues/18611)<br>
 [18720](https://redmine.condate.com/issues/18720)<br>
@@ -102,7 +110,7 @@ Admin, je souhaite avoir un filtre pour rechercher dans les ressources studio"
 [18404](https://redmine.condate.com/issues/18404)<br>
 [18526](https://redmine.condate.com/issues/18526)<br>
 [18534](https://redmine.condate.com/issues/18534)<br>
-[18405](https://redmine.condate.com/issues/186405)<br>
+[18405](https://redmine.condate.com/issues/18405)<br>
 
 ## V6.0.A
 

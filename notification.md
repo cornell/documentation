@@ -1,11 +1,9 @@
 ---
-Sort: 6
+Sort: 7
 ---
 
-## Catégorie et nom
-
-Générales:
-*"Mail envoyé quand le seuil d'utilisation d'espace disque est dépassé"*
+Catégorie Générales:<br>
+"Mail envoyé quand le seuil d'utilisation d'espace disque est dépassé"
 
 ## Stories [[18016]](https://redmine.condate.com/issues/18016)[[18397]](https://redmine.condate.com/issues/18397)
 

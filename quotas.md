@@ -1,5 +1,5 @@
 ---
-Sort: 5
+Sort: 6
 ---
 ## Story 01 [[18015]](https://redmine.condate.com/issues/18015)
 

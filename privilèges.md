@@ -2,9 +2,10 @@
 Sort: 3
 ---
 
-```
+```java
     "Vsix/Administrateur": Visibilité du menu de purge
 ```
+
 
 Ce privilège permet:
 * l'accès à la page de Purge ainsi qu'à toutes les actions associées à cette page.<br>
@@ -13,6 +14,6 @@ Ce privilège permet:
 ## Technique
 
 ```java
-//Find all validators from privilege
-return Container.Get<IUserService>().FindByPrivilege("Admin.Purge.View");			
+// Nom du privilège
+"Admin.Purge.View"
 ```
