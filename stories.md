@@ -1,3 +1,6 @@
+---
+Sort: 3
+---
 # Stories
 
 ## [Quotas](quotas.md)

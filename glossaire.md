@@ -1,3 +1,6 @@
+---
+Sort: 4
+---
 # Glossaire
 
 **ressource utilisée**<br>
