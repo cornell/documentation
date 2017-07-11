@@ -1,8 +1,6 @@
 ---
 Sort: 10
 ---
-# Recherche
-
 ## Stories 
 [[18402]](https://redmine.condate.com/issues/18402)
 [[18526]](https://redmine.condate.com/issues/18526)

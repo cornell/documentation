@@ -3,8 +3,6 @@ Title: Stockage des fichiers
 Sort: 11
 Modified: 
 ---
-# Stockage des fichiers
-
 ```bash
 # Arborescence du répertoire "Files"
 Files

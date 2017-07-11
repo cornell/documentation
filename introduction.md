@@ -1,8 +1,6 @@
 ---
-Sort: 2
+Sort: 1
 ---
-## Introduction
-
 Lors de l'utilisation de la plateforme, nous permettons aux clients d'ajouter des fichiers (image, vidéo, pdf, excel, etc...).
 
 Avec le temps, ses fichiers prennent une place importante (plusieurs Go). La fonctionnalité de purge a pour but de libérer cet espace disque.

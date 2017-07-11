@@ -1,8 +1,6 @@
 ---
-Sort: 4
+Sort: 13
 ---
-# Glossaire
-
 **ressource utilisée**<br>
 ressource associée à un ou plusieurs modules.
 

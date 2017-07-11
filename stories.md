@@ -1,8 +1,6 @@
 ---
-Sort: 3
+Sort: 5
 ---
-# Stories
-
 ## [Quotas](quotas.md)
 
 [[18017]](https://redmine.condate.com/issues/18017)

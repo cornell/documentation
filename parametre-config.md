@@ -1,8 +1,7 @@
 ---
-Sort: 7
+title: Paramètres de configuration
+sort: 2
 ---
-# Paramètres de configuration
-
 ## Menu "Administrateur/Purge et quotas"
 
 * "Seuil de tolérance d'utilisation d'espace disque en % ou en GB. Ajoutez l'unité à la fin du paramètre. Ex: '150GB' ou '80%'."<br>

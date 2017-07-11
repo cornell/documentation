@@ -1,10 +1,6 @@
 ---
-Sort: 9
+Sort: 5
 ---
-# Quotas
-
-Acces denied
-
 ## Story 01 [[18015]](https://redmine.condate.com/issues/18015)
 
 *En tant qu*'administrateur,<br>
@@ -69,6 +65,9 @@ L'élément "Logs" contient la somme des répertoires "Logs" et "Traces".
 *Alors* l'espace disque alloué est de 60GB
 
 ## Technique
+
+NOTE:
+Si les droits d'accès sur certains répertoires sont refusés alors la taille du répertoire concerné renverra 0.
 
 ```java
 // espace de noms

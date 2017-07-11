@@ -1,8 +1,6 @@
 ---
-Sort: 8
+Sort: 6
 ---
-# Notification
-
 ## Stories 
 [[18016]](https://redmine.condate.com/issues/18016)
 [[18397]](https://redmine.condate.com/issues/18397)
