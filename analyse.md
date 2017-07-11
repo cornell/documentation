@@ -1,5 +1,5 @@
 ---
-Sort: 12
+Sort: 11
 ---
 ## Stories <br>
 [[18018]](https://redmine.condate.com/issues/18018)<br>

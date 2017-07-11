@@ -1,11 +1,16 @@
 ---
 Sort: 3
 ---
-"Vsix/Administrateur": Visibilité du menu de purge
 
-Note: ce privilège permet l'accès à la page de Purge (ainsi qu'à toutes les actions disponibles sur celle-ci) mais définit aussi la liste de diffusion de la [notification](./notification.md) d'utilisation d'espace disque dépassé.
-En effet, ce sont ceux qui ont l'accès à la fonctionnalité qui seront les destinataires de la notification.
+```
+    "Vsix/Administrateur": Visibilité du menu de purge
+```
 
+Ce privilège permet:
+* l'accès à la page de Purge ainsi qu'à toutes les actions associées à cette page.<br>
+* de définir les personnes qui seront [notifiées lors du dépassement du quota d'espace disque](./notification.md).
+
+## Technique
 
 ```java
 //Find all validators from privilege
