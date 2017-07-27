@@ -15,7 +15,6 @@ Sort: 9
 
 ### Scénarios
 
-
 **Etant donné** un package qui est lié à une ressource non purgable<br>
 **Quand** l'admin. accède à la page de purge<br>
 **Alors** il visualise le nom du package<br>

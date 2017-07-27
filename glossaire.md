@@ -1,6 +1,9 @@
 ---
 Sort: 11
 ---
+**package**<br>
+répertoire contenant des fichiers utilisées par une ressource.
+
 **ressource utilisée**<br>
 ressource associée à un ou plusieurs modules.
 

@@ -9,25 +9,25 @@ Sort: 6
 
 ### Scénarios
 
-*Soit* un espace disque alloué de 100GB
-*Et* un espace disque utilisé de 60GB
-*Alors* l'espace disque restant est de 40GB
+*Soit* un espace disque alloué de 100GB<br>
+*Et* un espace disque utilisé de 60GB<br>
+*Alors* l'espace disque restant est de 40GB<br>
 
-*Soit* un espace disque alloué de 50GB
-*Et* un seuil égal à 80%
-*Alors* la valeur du seuil d'alerte est de 40GB
+*Soit* un espace disque alloué de 50GB<br>
+*Et* un seuil égal à 80%<br>
+*Alors* la valeur du seuil d'alerte est de 40GB<br>
 
-*Soit* un espace disque alloué de 50GB
-*Et* un seuil égal à 40GB
-*Alors* la valeur du seuil d'alerte est de 40GB
+*Soit* un espace disque alloué de 50GB<br>
+*Et* un seuil égal à 40GB<br>
+*Alors* la valeur du seuil d'alerte est de 40GB<br>
 
-*Soit* l'espace disque du paramètre de configuration qui est vide
-*Quand* l'espace disque utilisé est de 10GB
-*Alors* l'espace disque alloué est égal à 13GB (130% de l'espace disque utilisé)
+*Soit* l'espace disque du paramètre de configuration qui est vide<br>
+*Quand* l'espace disque utilisé est de 10GB<br>
+*Alors* l'espace disque alloué est égal à 13GB (130% de l'espace disque utilisé)<br>
 
-*Soit* un espace disque alloué de 50GB
-*Et* un seuil égal à 0.3GB
-*Alors* la valeur du seuil d'alerte est de 0.3GB
+*Soit* un espace disque alloué de 50GB<br>
+*Et* un seuil égal à 0.3GB<br>
+*Alors* la valeur du seuil d'alerte est de 0.3GB<br>
 
 
 ## Story 02 [[18017]](https://redmine.condate.com/issues/18017) [[18341]](https://redmine.condate.com/issues/18341)
@@ -60,9 +60,9 @@ L'élément "Logs" contient la somme des répertoires "Logs" et "Traces".
 *Alors* le seuil est défini par défaut à 80%<br>
 
 *Soit* une application avec une licence à 60GB<br>
-*Et* un paramètre d'espace disque alloué défini à 50GB
-*Quand* je récupère les paramètres de configuration
-*Alors* l'espace disque alloué est de 60GB
+*Et* un paramètre d'espace disque alloué défini à 50GB<br>
+*Quand* je récupère les paramètres de configuration<br>
+*Alors* l'espace disque alloué est de 60GB<br>
 
 ## Technique
 
